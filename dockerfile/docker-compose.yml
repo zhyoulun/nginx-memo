@@ -1,0 +1,33 @@
+version: '3'
+services: 
+    nginx1: 
+        build: ./my-nginx
+        ports:
+            - "9100:80"
+        networks:
+                staticnet:
+                        ipv4_address: 192.168.11.100
+    goserver1:
+        build: ./my-golang-server
+        ports:
+            - "9101:8080"
+        networks:
+                staticnet:
+                        ipv4_address: 192.168.11.101
+    goserver2:
+        build: ./my-golang-server
+        networks:
+                staticnet:
+                        ipv4_address: 192.168.11.102
+    goserver3:
+        build: ./my-golang-server
+        networks:
+                staticnet:
+                        ipv4_address: 192.168.11.103
+       
+networks:
+        staticnet:
+                ipam:
+                        driver: default
+                        config:
+                                - subnet: 192.168.11.0/24 
