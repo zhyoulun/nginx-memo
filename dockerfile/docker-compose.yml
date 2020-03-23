@@ -4,6 +4,7 @@ services:
         build: ./my-nginx
         ports:
             - "9100:80"
+        privileged: true
         networks:
                 staticnet:
                         ipv4_address: 192.168.11.100
@@ -11,16 +12,19 @@ services:
         build: ./my-golang-server
         ports:
             - "9101:8080"
+        privileged: true
         networks:
                 staticnet:
                         ipv4_address: 192.168.11.101
     goserver2:
         build: ./my-golang-server
+        privileged: true
         networks:
                 staticnet:
                         ipv4_address: 192.168.11.102
     goserver3:
         build: ./my-golang-server
+        privileged: true
         networks:
                 staticnet:
                         ipv4_address: 192.168.11.103
